@@ -1,0 +1,23 @@
+{
+  "name": "s3-grpc-file-connector",
+  "private": true,
+  "version": "0.0.1",
+  "author": "QlikTech International AB",
+  "description": "S3 GRPC File Connector Example",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix ."
+  },
+  "dependencies": {
+    "bytebuffer": "5.0.1",
+    "grpc": "1.16.0",
+    "@grpc/proto-loader": "0.3.0",
+    "aws-sdk": "2.358.0"
+  },
+  "devDependencies": {
+    "eslint": "5.9.0",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-plugin-import": "2.14.0"
+  }
+}

@@ -1,0 +1,6 @@
+engine: localhost:9076
+app: reloadapp.qvf
+script: ../script.qvs
+connections:
+  s3bucket:
+    type: s3-grpc-file-connector

@@ -1,0 +1,21 @@
+trace Loading from S3:;
+Airports:
+LOAD
+  *
+FROM [lib://s3bucket/airports.csv]
+(txt, codepage is 28591, delimiter is ',', msq);
+
+trace Exporting to S3:;
+STORE Airport as Flygplats, City as Stad FROM Airports INTO [lib://s3bucket/exported.qvd];
+
+trace Reimporting qvd from s3:;
+ExportedAndImported:
+LOAD * FROM [lib://s3bucket/exported.qvd] (qvd);
+
+trace Listing files in s3:;
+Files:
+LOAD Distinct
+  FileName() as filename,
+  FileTime() as filetime,
+  FileSize() as filesize
+FROM [lib://s3bucket/];
