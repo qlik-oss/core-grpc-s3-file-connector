@@ -1,0 +1,14 @@
+{
+    "name": "core-grpc-s3-file-connector-example-reload-runner",
+    "private": true,
+    "version": "0.0.1",
+    "author": "QlikTech International AB",
+    "license": "MIT",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "enigma.js": "2.3.0",
+        "ws": "6.1.0"
+    }
+}

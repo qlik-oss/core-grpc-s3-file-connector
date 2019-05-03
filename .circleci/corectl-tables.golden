@@ -1,0 +1,6 @@
+Name                  Row count   RAM      Fields
+Airports              8097        128.6k   rowID, Airport, City, Country, IATACode, ICAOCode, Latitude, Longitude, AltitudeFt, TimeZone, DST, TZ
+ExportedAndImported   8097        25.7k    Flygplats, Stad
+Files                 8           10       filename, filetime, filesize
+                                  
+Total RAM                         1.3M

@@ -1,0 +1,49 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    working_directory: ~/s3-grpc-file-connector
+    steps:
+      - checkout
+      - run:
+          name: Install node
+          command: |
+            set +e
+            curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+            export NVM_DIR="/opt/circleci/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            nvm install v8
+            nvm alias default v8
+            # Each step uses the same `$BASH_ENV`, so need to modify it
+            echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
+            echo "[ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\"" >> $BASH_ENV
+      - restore_cache:
+          key: npm-dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Install dependencies
+          command: npm install --quiet
+      - run:
+          name: Run ESLint
+          command: npm run lint
+      - save_cache:
+          key: npm-dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Spin up environment
+          working_directory: ~/s3-grpc-file-connector/example
+          command: ACCEPT_EULA=yes docker-compose up -d --build
+      - run:
+          name: Execute node example
+          working_directory: ~/s3-grpc-file-connector/example/node
+          command: |
+            npm install
+            npm start
+      - run:
+          name: Execute corectl example
+          working_directory: ~/s3-grpc-file-connector/example/corectl
+          command: |
+            curl --silent --location "https://github.com/qlik-oss/corectl/releases/download/v0.5.0/corectl-$(uname -s)-x86_64.tar.gz" | tar xz -C .
+            ./corectl build
+            ./corectl get tables > log
+            diff ../../.circleci/corectl-tables.golden log
