@@ -13,7 +13,7 @@
     "bytebuffer": "5.0.1",
     "grpc": "1.21.1",
     "@grpc/proto-loader": "0.5.1",
-    "aws-sdk": "2.471.0"
+    "aws-sdk": "2.476.0"
   },
   "devDependencies": {
     "eslint": "5.16.0",
