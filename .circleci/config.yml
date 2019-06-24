@@ -45,5 +45,5 @@ jobs:
           command: |
             curl --silent --location "https://github.com/qlik-oss/corectl/releases/download/v1.2.0/corectl-$(uname -s)-x86_64.tar.gz" | tar xz -C .
             ./corectl build
-            ./corectl get tables > log
+            ./corectl tables > log
             diff ../../.circleci/corectl-tables.golden log
