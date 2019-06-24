@@ -144,6 +144,7 @@ class S3GrpcFileConnector {
       const listParams = {
         Bucket: process.env.CORE_S3_FILE_CONNECTOR_BUCKET_NAME,
         Prefix: call.request.pathPattern,
+        Delimiter: '/',
       };
       await fetchAndSendChunkOfKeys(listParams);
     } catch (err) {
