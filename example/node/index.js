@@ -10,12 +10,12 @@ async function verifyTable(tableData, firstFieldInRow, entireRow) {
     return Promise.reject(new Error('Empty table response'));
   }
   // Check if we can find one of the rows we know should be there.
-  const firstRow = tableData.find(row => row.qValue[0].qText === firstFieldInRow);
+  const firstRow = tableData.find((row) => row.qValue[0].qText === firstFieldInRow);
   if (!firstRow) {
     throw new Error(`Could not find row with id ${firstFieldInRow}`);
   }
   // Check if the contents of that row matches the expected.
-  const firstRowAsString = firstRow.qValue.map(obj => obj.qText).reduce((a, b) => `${a}:${b}`);
+  const firstRowAsString = firstRow.qValue.map((obj) => obj.qText).reduce((a, b) => `${a}:${b}`);
   if (firstRowAsString !== entireRow) {
     throw new Error('The test row was not as expected');
   }
@@ -23,7 +23,7 @@ async function verifyTable(tableData, firstFieldInRow, entireRow) {
 }
 
 function printTable(tableData) {
-  const tableDataAsString = tableData.map(row => row.qValue.map(value => value.qText).reduce((left, right) => `${left}\t${right}`)).reduce((row1, row2) => `${row1}\n${row2}`);
+  const tableDataAsString = tableData.map((row) => row.qValue.map((value) => value.qText).reduce((left, right) => `${left}\t${right}`)).reduce((row1, row2) => `${row1}\n${row2}`);
   console.log(tableDataAsString);
 }
 
@@ -34,21 +34,21 @@ function printTable(tableData) {
   const session = enigma.create({
     schema,
     url: `ws://${host}:9076/${appId}`,
-    createSocket: url => new WebSocket(url),
+    createSocket: (url) => new WebSocket(url),
   });
 
   const trafficLog = false;
 
   if (trafficLog) {
     // bind traffic events to log what is sent and received on the socket:
-    session.on('traffic:sent', data => console.log('sent:', data));
-    session.on('traffic:received', data => console.log('received:', data));
+    session.on('traffic:sent', (data) => console.log('sent:', data));
+    session.on('traffic:received', (data) => console.log('received:', data));
   }
 
   try {
     const global = await session.open();
     console.log('Creating/opening app');
-    const app = await global.createApp(appId).then(appInfo => global.openDoc(appInfo.qAppId)).catch(() => global.openDoc(appId));
+    const app = await global.createApp(appId).then((appInfo) => global.openDoc(appInfo.qAppId)).catch(() => global.openDoc(appId));
     console.log('Creating connection');
 
 
