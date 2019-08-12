@@ -108,7 +108,7 @@ function printTable(tableData) {
     console.log('Fetching Dir Table sample');
     const tableData3 = await app.getTableData(-1, 50, true, 'Files');
     printTable(tableData3);
-    await verifyTable(tableData3, 'airports.csv', 'airports.csv:-:0');
+    await verifyTable(tableData3, 'airports.csv', 'airports.csv:-:738011');
     await session.close();
     console.log('Session closed');
   } catch (err) {
