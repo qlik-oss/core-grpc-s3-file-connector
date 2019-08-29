@@ -202,7 +202,7 @@ function main() {
   AWS.config.update({
     accessKeyId: process.env.CORE_S3_FILE_CONNECTOR_BUCKET_ACCESS_KEY_ID,
     secretAccessKey: process.env.CORE_S3_FILE_CONNECTOR_BUCKET_SECRET_ACCESS_KEY,
-    region: process.env.CORE_S3_FILE_CONNECTOR_BUCKET_REGION
+    region: process.env.CORE_S3_FILE_CONNECTOR_BUCKET_REGION,
   });
 
   server = new grpc.Server();
