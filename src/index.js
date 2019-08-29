@@ -198,9 +198,11 @@ process.on('SIGTERM', () => {
 function main() {
   console.log('Starting...');
   // configuring the AWS environment
+  // regions can be found here https://docs.aws.amazon.com/general/latest/gr/rande.html
   AWS.config.update({
     accessKeyId: process.env.CORE_S3_FILE_CONNECTOR_BUCKET_ACCESS_KEY_ID,
     secretAccessKey: process.env.CORE_S3_FILE_CONNECTOR_BUCKET_SECRET_ACCESS_KEY,
+    region: process.env.CORE_S3_FILE_CONNECTOR_BUCKET_REGION,
   });
 
   server = new grpc.Server();

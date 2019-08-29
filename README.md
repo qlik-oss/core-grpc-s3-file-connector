@@ -22,6 +22,7 @@ The connector reads S3 credentials from the following environment variables:
 * CORE_S3_FILE_CONNECTOR_BUCKET_NAME_
 * CORE_S3_FILE_CONNECTOR_BUCKET_ACCESS_KEY_ID
 * CORE_S3_FILE_CONNECTOR_BUCKET_SECRET_ACCESS_KEY
+* CORE_S3_FILE_CONNECTOR_BUCKET_REGION
 
 as can be seen in [example/docker-compose.yml](example/docker-compose.yml).
 
