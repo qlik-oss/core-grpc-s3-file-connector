@@ -166,14 +166,13 @@ class S3GrpcFileConnector {
         Prefix: call.request.fileName,
       };
       const responses = await s3.listObjectsV2(params).promise();
+      console.log('metadata response', responses);
       if (responses.Contents.length > 0) {
-        console.log('metadata response', responses);
         callback(null, {
           size: responses.Contents[0].Size,
           lastUpdated: responses.Contents[0].LastModified.getTime() / 1000,
         });
       }
-      console.log('metadata response', responses);
       callback({
         code: grpc.status.INVALID_ARGUMENT,
         message: 'No object matching supplied path',
