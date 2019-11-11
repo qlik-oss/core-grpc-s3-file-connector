@@ -172,11 +172,12 @@ class S3GrpcFileConnector {
           size: responses.Contents[0].Size,
           lastUpdated: responses.Contents[0].LastModified.getTime() / 1000,
         });
+      } else {
+        callback({
+          code: grpc.status.INVALID_ARGUMENT,
+          message: 'No object matching supplied path',
+        });
       }
-      callback({
-        code: grpc.status.INVALID_ARGUMENT,
-        message: 'No object matching supplied path',
-      });
     } catch (err) {
       console.log('metadata response', err);
       callback({
