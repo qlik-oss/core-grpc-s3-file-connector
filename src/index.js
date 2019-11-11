@@ -21,7 +21,7 @@ function buildRangeHeader({ start, length }) {
 class S3GrpcFileConnector {
   getCapabilities(call, callback) {
     console.log('get capabilities');
-    callback({
+    callback(null, {
       supportsRandomRead: true,
     });
   }
@@ -166,11 +166,11 @@ class S3GrpcFileConnector {
         Prefix: call.request.fileName,
       };
       const responses = await s3.listObjectsV2(params).promise();
-      if (responses.length > 0) {
+      if (responses.Contents.length > 0) {
         console.log('metadata response', responses);
         callback(null, {
-          size: responses[0].Size,
-          lastUpdated: responses[0].LastModified.getTime() / 1000,
+          size: responses.Contents[0].Size,
+          lastUpdated: responses.Contents[0].LastModified.getTime() / 1000,
         });
       }
       console.log('metadata response', responses);
