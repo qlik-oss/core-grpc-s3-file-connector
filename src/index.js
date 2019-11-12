@@ -73,8 +73,17 @@ class S3GrpcFileConnector {
             VersionId: metadata.VersionId,
             Range: buildRangeHeader(downloadRequest.chunk),
           };
-          console.log(requestId, 's3.getObject(params).createReadStrean: ', params);
+          console.log(requestId, 's3.getObject(params).createReadStream: ', params);
           const readStream = s3.getObject(params).createReadStream();
+          readStream.on('error', (error) => {
+            console.log(requestId, 'S3 error', error);
+            call.write({
+              chunk: {
+                data: [],
+                last: true,
+              },
+            });
+          })
           bufferToChunkTransformer.pipe(call);
           readStream.pipe(bufferToChunkTransformer);
         } catch (err) {
