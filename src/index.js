@@ -83,7 +83,7 @@ class S3GrpcFileConnector {
                 last: true,
               },
             });
-          })
+          });
           bufferToChunkTransformer.pipe(call);
           readStream.pipe(bufferToChunkTransformer);
         } catch (err) {
