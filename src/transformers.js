@@ -12,6 +12,7 @@ class BufferToGrpcChunkTransformer extends stream.Transform {
         last: false,
       },
     };
+    console.log('chunk data', outputChunk.chunk.data.length);
     callback(null, outputChunk);
   }
 
@@ -22,6 +23,7 @@ class BufferToGrpcChunkTransformer extends stream.Transform {
         last: true,
       },
     };
+    console.log('chunk data', outputChunk.chunk.data.length, '(last)');
     callback(null, outputChunk);
   }
 }
@@ -33,6 +35,7 @@ class GrpcChunkToBufferTransformer extends stream.Transform {
   }
 
   _transform(chunk, encoding, callback) {
+    console.log('chunk data', chunk.data.length);
     callback(null, chunk.data);
   }
 }
