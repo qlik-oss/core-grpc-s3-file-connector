@@ -28,7 +28,6 @@ class BufferToGrpcChunkTransformer extends stream.Transform {
   }
 }
 
-
 class GrpcChunkToBufferTransformer extends stream.Transform {
   constructor() {
     super({ objectMode: true, writableObjectMode: true, readableObjectMode: false });
