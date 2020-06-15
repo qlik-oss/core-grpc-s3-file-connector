@@ -27,7 +27,6 @@ function printTable(tableData) {
   console.log(tableDataAsString);
 }
 
-
 (async () => {
   const appId = 'reloadapp.qvf';
   // create a new session:
@@ -51,13 +50,11 @@ function printTable(tableData) {
     const app = await global.createApp(appId).then((appInfo) => global.openDoc(appInfo.qAppId)).catch(() => global.openDoc(appId));
     console.log('Creating connection');
 
-
     const connectionId = await app.createConnection({
       qType: 's3-grpc-file-connector',
       qName: 's3bucket',
       qConnectionString: '<empty>',
     });
-
 
     const script = fs.readFileSync(`${__dirname}/../script.qvs`, 'utf8');
 
