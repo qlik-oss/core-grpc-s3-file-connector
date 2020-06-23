@@ -13,10 +13,10 @@
     "bytebuffer": "5.0.1",
     "grpc": "1.24.3",
     "@grpc/proto-loader": "0.5.4",
-    "aws-sdk": "2.696.0"
+    "aws-sdk": "2.702.0"
   },
   "devDependencies": {
-    "eslint": "7.2.0",
+    "eslint": "7.3.1",
     "eslint-config-airbnb-base": "14.2.0",
     "eslint-plugin-import": "2.21.2"
   }
