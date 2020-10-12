@@ -2,6 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/qlik-oss/core-grpc-s3-file-connector.svg?style=svg)](https://circleci.com/gh/qlik-oss/core-grpc-s3-file-connector)
 
+*As of 1 July 2020, Qlik Core is no longer available to new customers. No further maintenance will be done in this repository.*
+
 The Example GRPC S3 File Connector shows how to load data into Qlik Associative Engine from S3 using a
 dockerized connector built in Javascript. It streams the data using NodeJS streams from the S3 SDK via a simple transform to the grpc output stream.
 
